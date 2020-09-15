@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { QuestionState, Difficulty, fetchQuizQuestions } from "./API";
 import QuestionCard from "./Components/QuestionCard";
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -36,9 +36,31 @@ const App = () => {
 
   console.log(questions);
 
-  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {};
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!gameOver) {
+      const answer = e.currentTarget.value;
+      const correct = questions[number].correct_answer === answer;
+      if (correct) {
+        setScore((prev) => prev + 1);
+      }
+      const answerObject = {
+        question: questions[number].question,
+        answer,
+        correct,
+        correctAnswer: questions[number].correct_answer,
+      };
+      setUserAnswers((prev) => [...prev, answerObject]);
+    }
+  };
 
-  const nextQuestion = () => {};
+  const nextQuestion = () => {
+    const nextQuestion = number + 1;
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQuestion);
+    }
+  };
 
   return (
     <div className="App">
@@ -49,7 +71,7 @@ const App = () => {
         </button>
       ) : null}
 
-      {!gameOver ? <p className="score">Score</p> : null}
+      {!gameOver ? <p className="score">Score: {score}</p> : null}
       {loading ? <p className="loading">loading</p> : null}
       {!loading && !gameOver && (
         <QuestionCard
