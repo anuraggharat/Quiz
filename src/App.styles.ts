@@ -8,7 +8,7 @@ html{
     box-sizing:border-box
 }
 body{
-    background:linear-gradient(#111,#fff)
+    background: linear-gradient(180deg, #74b9ff, #0984e3);
 }
 `;
 
@@ -31,10 +31,33 @@ export const Wrapper = styled.div`
   .start,
   .next {
     cursor: pointer;
-    background: linear-gradient(180deg, #fff, #ffcc91);
     margin-top: 50px;
     border: 0px;
     border-radius: 25px;
     padding: 10px 25px;
+  }
+`;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  color: white;
+  padding-top: 100px;
+  > button {
+    margin-bottom: 20px;
+    width: 25%;
+  }
+  > select {
+    margin-top: 5px;
+    width: 25%;
+    font-size: 1rem;
+    padding: 10px 25px;
+    border: 0px;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom: 20px;
   }
 `;

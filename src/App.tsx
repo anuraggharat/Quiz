@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { QuestionState, Difficulty, fetchQuizQuestions } from "./API";
 import QuestionCard from "./Components/QuestionCard";
 
-import { GlobalStyle, Wrapper } from "./App.styles";
+import { GlobalStyle, Wrapper, Container } from "./App.styles";
 
 export type AnswerObject = {
   question: string;
@@ -20,6 +20,7 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [difficulty, setDifficulty] = useState("easy");
 
   const startTrivia = async () => {
     setLoading(true);
@@ -70,9 +71,23 @@ const App = () => {
       <Wrapper>
         <h1>Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className="start" onClick={startTrivia}>
-            Start Quiz
-          </button>
+          <Container>
+            <label htmlFor="difficulty">Choose the Difficulty</label>
+            <select name="difficulty" id="difficulty" defaultValue={difficulty}>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <label htmlFor="difficulty">Choose the Amount</label>
+            <select name="difficulty" id="difficulty" defaultValue={difficulty}>
+              <option value="easy">10</option>
+              <option value="medium">20</option>
+              <option value="hard">30</option>
+            </select>
+            <button className="start" onClick={startTrivia}>
+              Start Quiz
+            </button>
+          </Container>
         ) : null}
 
         {!gameOver ? <p className="score">Score: {score}</p> : null}
@@ -91,9 +106,11 @@ const App = () => {
         !loading &&
         userAnswers.length === number + 1 &&
         number !== TOTAL_QUESTIONS - 1 ? (
-          <button className="next" onClick={nextQuestion}>
-            Next Question
-          </button>
+          <div>
+            <button className="next" onClick={nextQuestion}>
+              Next Question
+            </button>
+          </div>
         ) : null}
       </Wrapper>
     </>
