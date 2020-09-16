@@ -21,14 +21,12 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [difficulty, setDifficulty] = useState("easy");
+  const [count, setCount] = useState(10);
 
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
-    const newQuestions = await fetchQuizQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
-    );
+    const newQuestions = await fetchQuizQuestions(count, difficulty);
 
     setQuestions(newQuestions);
     setScore(0);
@@ -55,6 +53,13 @@ const App = () => {
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
+  console.log(count, difficulty);
+  const handleDifficulty = (e: any) => {
+    setDifficulty(e.target.value);
+  };
+  const handleCount = (e: any) => {
+    setCount(e.target.value);
+  };
 
   const nextQuestion = () => {
     const nextQuestion = number + 1;
@@ -73,16 +78,28 @@ const App = () => {
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <Container>
             <label htmlFor="difficulty">Choose the Difficulty</label>
-            <select name="difficulty" id="difficulty" defaultValue={difficulty}>
+            <select
+              name="difficulty"
+              id="difficulty"
+              value={difficulty}
+              defaultValue={difficulty}
+              onChange={(e) => handleDifficulty(e)}
+            >
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
               <option value="hard">Hard</option>
             </select>
             <label htmlFor="difficulty">Choose the Amount</label>
-            <select name="difficulty" id="difficulty" defaultValue={difficulty}>
-              <option value="easy">10</option>
-              <option value="medium">20</option>
-              <option value="hard">30</option>
+            <select
+              name="difficulty"
+              id="difficulty"
+              defaultValue={count}
+              value={count}
+              onChange={(e) => handleCount(e)}
+            >
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
             </select>
             <button className="start" onClick={startTrivia}>
               Start Quiz

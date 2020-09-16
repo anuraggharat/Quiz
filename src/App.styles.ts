@@ -8,7 +8,12 @@ html{
     box-sizing:border-box
 }
 body{
-    background: linear-gradient(180deg, #74b9ff, #0984e3);
+    background-color:#74B9FF;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-top:30px;
+}
+h1{
+  font-size:3rem;
 }
 `;
 
@@ -16,22 +21,28 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 75%;
+  height: 80%;
+  margin: auto;
+  background-color: white !important;
   > p {
-    color: #fff;
+    color: #74b9ff;
   }
   .score {
-    color: #fff;
+    color: #111;
     font-size: 2rem;
   }
   h1 {
     font-size: 3rem;
-    color: #fff;
+    color: #74b9ff;
     margin: 10px;
   }
   .start,
   .next {
     cursor: pointer;
-    margin-top: 50px;
+    background: linear-gradient(90deg, #56ffa4, #59bc86);
+    color: white;
+    margin-top: 20px;
     border: 0px;
     border-radius: 25px;
     padding: 10px 25px;
@@ -44,19 +55,28 @@ export const Container = styled.div`
   height: 100%;
   width: 100%;
   align-items: center;
-  color: white;
-  padding-top: 100px;
+  color: #74b9ff;
+  padding-top: 50px;
+  text-align: left;
   > button {
     margin-bottom: 20px;
     width: 25%;
   }
+  > label {
+    font-size: 1.5rem;
+    margin-top: 50px;
+    text-align: left;
+  }
   > select {
+    color: #fff;
     margin-top: 5px;
     width: 25%;
     font-size: 1rem;
     padding: 10px 25px;
+    align-items: center;
     border: 0px;
     border-radius: 25px;
+    background-color: #74b9ff;
     overflow: hidden;
     margin-bottom: 20px;
   }

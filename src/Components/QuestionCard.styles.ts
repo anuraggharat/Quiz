@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   max-width: 1100px;
-  background: #ebfeff;
   border-radius: 10px;
   padding: 20px;
   text-align: center;
 
   p {
     font-size: 1rem;
+    color: #111;
   }
 `;
 
